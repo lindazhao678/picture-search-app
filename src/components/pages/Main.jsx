@@ -5,9 +5,8 @@ function Main(props) {
       <div className="card">
         <img className="card-img-top" src={elem.previewURL} alt="" />
         <div className="card-body">
-          <h5 className="card-title">Tags:{elem.tags}</h5>
-          <p className="card-text">User:{elem.user}</p>
-          <a href={elem.largeImageURL} className="btn btn-primary">
+          <p className="card-title">Tags: {elem.tags}</p>
+          <a href={elem.largeImageURL} target="_blank" rel="noreferrer" className="btn btn-dark">
             Zoom In
           </a>
         </div>
@@ -19,28 +18,29 @@ function Main(props) {
     <div className="container">
       <div className="row">
         {result.map((elem) => {
-          console.log(elem);
           return <div className="col-sm-3">{card(elem)}</div>;
         })}
       </div>
 
-      <div className="row">
+      <div className="row my-5">
         <div className="col-sm-3">
           <button
-            className="btn btn-primary w-100"
+            className="btn btn-dark w-100"
             onClick={() => getPrevPage()}
             disabled={page === 1}
           >
-            Prev
+            Prev Page
           </button>
         </div>
-        <div className="col-sm-6 text-center">{page}</div>
+        <div className="col-sm-6 text-center">
+          <h3>{page}</h3>
+          </div>
         <div className="col-sm-3">
           <button
-            className="btn btn-primary w-100"
+            className="btn btn-dark w-100"
             onClick={() => getNextPage()}
           >
-            Next
+            Next Page
           </button>
         </div>
       </div>

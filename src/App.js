@@ -10,12 +10,14 @@ import { getResults } from './services/pixelBayServices'
 
 function App() {
 
-  const [query, setQuery] = useState('cat');
+  const [query, setQuery] = useState('flower');
   const [searchResults, setSearchResults] = useState([]);
   let [page, setPage] = useState(1);
-  
 
   useEffect(() => {
+    const storedQuery = localStorage.getItem("query")
+    storedQuery && setQuery(storedQuery)
+
     getResults(query, page)
       .then((results) => {
         setSearchResults(results.data.hits)
@@ -36,6 +38,7 @@ function App() {
 
   const handleQuery = (value) => {
     setQuery(value)
+    localStorage.setItem("query", value)
   }
 
   return (
