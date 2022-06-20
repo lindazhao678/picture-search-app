@@ -19,7 +19,7 @@ function App() {
     storedQuery && setQuery(storedQuery)
 
     axios
-      .get("http://localhost:8000", {
+      .get("https://picture-search-app-api.herokuapp.com/", {
         params: {
           q: query,
           page: page
