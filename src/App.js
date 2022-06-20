@@ -6,7 +6,7 @@ import Main from './components/pages/Main'
 import { Route, Routes } from 'react-router-dom'
 import PageNotFound from './components/pages/PageNotFound'
 import React, { useEffect, useState } from 'react'
-import { getResults } from './services/pixelBayServices'
+import axios from 'axios'
 
 function App() {
 
@@ -18,14 +18,20 @@ function App() {
     const storedQuery = localStorage.getItem("query")
     storedQuery && setQuery(storedQuery)
 
-    getResults(query, page)
-      .then((results) => {
-        setSearchResults(results.data.hits)
+    axios
+      .get("http://localhost:8000", {
+        params: {
+          q: query,
+          page: page
+        }
       })
-      .catch((error) => {
-        console.log(error);
+      .then((response) => {
+        setSearchResults(response.data.hits);
+      })
+      .catch((err) => {
+        console.log(err);
       });
-  }, [page, query]);
+  }, [query, page]);
 
   const handlePrev = () => {
     if (page > 1)
