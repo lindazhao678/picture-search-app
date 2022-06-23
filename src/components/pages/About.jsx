@@ -5,7 +5,7 @@ function About() {
         <div className="col-6">
           <h1 className="text-center">About</h1>
           <p className="text-muted pt-3">
-            Pixel App is a react web appication for picture search. User can
+            Picture Search App is a react web appication for picture search. User can
             search pictures by tags. It's built with dynamic features, such as
             pagination, zoom in picture, and white/dark mode.
           </p>

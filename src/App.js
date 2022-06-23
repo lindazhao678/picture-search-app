@@ -13,11 +13,12 @@ function App() {
   const [query, setQuery] = useState('flower');
   const [searchResults, setSearchResults] = useState([]);
   let [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const storedQuery = localStorage.getItem("query")
     storedQuery && setQuery(storedQuery)
-
+    setLoading(true);
     axios
       .get("https://picture-search-app-api.herokuapp.com/", {
         params: {
@@ -26,20 +27,34 @@ function App() {
         }
       })
       .then((response) => {
+        setLoading(false);
         setSearchResults(response.data.hits);
       })
       .catch((err) => {
+        setLoading(false);
         console.log(err);
       });
   }, [query, page]);
 
+  function scroll(top) {
+    setTimeout(() => {
+      window.scrollTo({
+        top: top,
+        left: 0,
+        behavior: "smooth",
+      });
+    }, 0);
+  }
+
   const handlePrev = () => {
     if (page > 1)
       setPage(page - 1)
+      scroll(0);
   }
 
   const handleNext = () => {
     setPage(page + 1)
+    scroll(0);
   }
 
   const handleQuery = (value) => {
@@ -51,7 +66,7 @@ function App() {
     <div className="App">
       <Navbar query={query} getQuery={handleQuery} />
       <Routes>
-        <Route path="/" element={<Main page={page} result={searchResults} getPrevPage={handlePrev} getNextPage={handleNext} />} />
+        <Route path="/" element={<Main page={page} result={searchResults} getPrevPage={handlePrev} getNextPage={handleNext} loading={loading} />} />
         <Route path="/about" element={<About />} />
         <Route path="/pagenotfound" element={<PageNotFound />} />
         <Route path="*" element={<PageNotFound />} />

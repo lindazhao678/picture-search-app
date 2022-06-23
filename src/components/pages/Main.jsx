@@ -1,13 +1,21 @@
+
 function Main(props) {
-  const { page, result, getPrevPage, getNextPage } = props;
+  const { page, result, getPrevPage, getNextPage, loading } = props;
+  
+
   function card(elem) {
     return (
-      <div className="card">
+      <div className="card border border-secondary">
         <img className="card-img-top" src={elem.previewURL} alt="" />
         <div className="card-body">
           <p className="card-title">Tags: {elem.tags}</p>
-          <a href={elem.largeImageURL} target="_blank" rel="noreferrer" className="btn btn-dark">
-            Zoom In
+          <a
+            href={elem.largeImageURL}
+            target="_blank"
+            rel="noreferrer"
+            className="btn btn-link text-dark"
+          >
+            Zoom In {">>"}
           </a>
         </div>
       </div>
@@ -16,9 +24,16 @@ function Main(props) {
 
   return (
     <div className="container">
+      {loading && (
+        <div className="text-center pt-5">
+          <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      )}
       <div className="row">
         {result.map((elem) => {
-          return <div className="col-sm-3">{card(elem)}</div>;
+          return <div className="col-sm-3 pb-3">{card(elem)}</div>;
         })}
       </div>
 
@@ -34,12 +49,9 @@ function Main(props) {
         </div>
         <div className="col-sm-6 text-center">
           <h3>{page}</h3>
-          </div>
+        </div>
         <div className="col-sm-3">
-          <button
-            className="btn btn-dark w-100"
-            onClick={() => getNextPage()}
-          >
+          <button className="btn btn-dark w-100" onClick={() => getNextPage()}>
             Next Page
           </button>
         </div>
