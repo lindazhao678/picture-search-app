@@ -2,7 +2,7 @@ function About() {
   return (
     <div className="container">
       <div className="d-flex justify-content-center">
-        <div className="col-6">
+        <div className="col-12 col-md-8 col-lg-6">
           <h1 className="text-center">About</h1>
           <p className="text-muted pt-3">
             Picture Search App is a react web appication for picture search. User can

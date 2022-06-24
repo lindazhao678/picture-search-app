@@ -1,7 +1,5 @@
-
 function Main(props) {
   const { page, result, getPrevPage, getNextPage, loading } = props;
-  
 
   function card(elem) {
     return (

@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 function Navbar(props) {
   const { query, getQuery } = props;
   function changeWhite() {
-    document.querySelector("body").style.backgroundColor = "white";
+    document.querySelector("body").style.backgroundColor = "transparent";
   }
 
   function changeBlack() {
-    document.querySelector("body").style.backgroundColor = "black";
+    document.querySelector("body").style.backgroundColor = "#4b5563";
   }
   return (
     <Fragment>
