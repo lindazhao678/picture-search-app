@@ -33,12 +33,12 @@ function Main(props) {
       )}
       <div className="row">
         {result.map((elem) => {
-          return <div className="col-sm-3 pb-3">{card(elem)}</div>;
+          return <div className="col-12 col-sm-6 col-md-4 col-lg-3 pb-3">{card(elem)}</div>;
         })}
       </div>
 
       <div className="row my-5">
-        <div className="col-sm-3">
+        <div className="col-5 col-lg-3">
           <button
             className="btn btn-dark w-100"
             onClick={() => getPrevPage()}
@@ -47,10 +47,10 @@ function Main(props) {
             Prev Page
           </button>
         </div>
-        <div className="col-sm-6 text-center">
+        <div className="col-2 col-lg-6 text-center">
           <h3>{page}</h3>
         </div>
-        <div className="col-sm-3">
+        <div className="col-5 col-lg-3">
           <button className="btn btn-dark w-100" onClick={() => getNextPage()}>
             Next Page
           </button>
