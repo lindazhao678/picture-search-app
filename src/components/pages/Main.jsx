@@ -30,7 +30,7 @@ function Main(props) {
         </div>
       )}
       <div className="row">
-        {result.map((elem) => {
+        {result.map(elem => {
           return <div className="col-12 col-sm-6 col-md-4 col-lg-3 pb-3">{card(elem)}</div>;
         })}
       </div>
